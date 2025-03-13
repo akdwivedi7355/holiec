@@ -20,12 +20,7 @@ export function Navigation({ cartItems }: NavigationProps) {
           
           <div className="flex items-center space-x-4">
            
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden text-gray-700"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            
           </div>
           <div className="hidden  items-center md:flex space-x-8 ml-10">
               <a href="#home" className="text-white hover:scale-105 hover:text-purple-600 ">Home</a>
@@ -33,6 +28,22 @@ export function Navigation({ cartItems }: NavigationProps) {
               <a href="#testimonal" className="text-white hover:text-purple-600">Testimonials</a>
               <a href="#contact" className="text-white hover:text-purple-600">Contact</a>
             </div>
+            <div className="flex items-center space-x-4">
+            <div className="relative">
+              <ShoppingCart className="text-gray-700 cursor-pointer" />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+                </span>
+              )}
+            </div>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden text-gray-700"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -75,3 +86,6 @@ export function Navigation({ cartItems }: NavigationProps) {
 }
 
 export default Navigation;
+
+
+
